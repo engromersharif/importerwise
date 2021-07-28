@@ -1,0 +1,50 @@
+---
+title: <center> <h1>  IMPORTER PRICE DETAILS </h1> </center>
+author: "Omer Sharif"
+date: "7/27/2021"
+output: 
+ rmarkdown::html_document:
+  theme: journal
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(ggthemes)
+library(dplyr)
+library(viridis)
+library(DT)
+library(kableExtra)
+library(readxl)
+
+# Induct In Ethanol Excel Sheet
+Main <- read_excel("C:/Users/omer.sharif/Desktop/Office Computer/Capstone/R Codes/Ethanol Dashboard/Jun 2021/Main.xlsm")
+```
+
+# INTERACTIVE REPORT
+
+### `Importer Wise`
+
+* Hover of the mouse on the data highlights _Prices,Dates,Products and Importer_ 
+* `Colours` here represent Products.
+* Data points kept transparent so that all data may show in cluster.
+
+
+```{r fig.align='left',fig.width=13,fig.height=12}
+
+IMPORTER <- as.factor(Main$IMPORTER)
+Product <- as.factor(Main$IMPORTER)
+
+p <- ggplot(data=Main,aes(x= DATE,y=`M.Ton Price`,colour=Product,label=IMPORTER)) 
+p <- p + geom_jitter(alpha=0.8,size=0.1)+ theme_grey(base_size=1) +
+  theme(axis.ticks.x = element_blank(), axis.text = element_text(size=1),
+        plot.title = element_text(hjust=0.5),legend.position = "top",legend.key.size = unit(0.5,'cm')) + labs(x="",y="",title="")
+
+p <- p + facet_wrap(~IMPORTER)+guides(fill="none") + scale_color_viridis_d()
+p <- ggplotly(p)
+hide_legend(p) %>% config(displaylogo = FALSE) %>%  config(displayModeBar = FALSE)  
+
+```
