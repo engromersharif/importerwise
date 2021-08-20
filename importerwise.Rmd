@@ -6,7 +6,7 @@ knit: (function(input_file, encoding) {
  encoding=encoding,
  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 author: "Omer Sharif"
-date: "7/27/2021"
+date: "8/20/2021"
 output: 
  rmarkdown::html_document:
   theme: journal
@@ -26,7 +26,7 @@ library(kableExtra)
 library(readxl)
 
 # Induct In Ethanol Excel Sheet
-Main <- read_excel("C:/Users/omer.sharif/Desktop/Office Computer/Capstone/R Codes/Ethanol Dashboard/Jun 2021/Main.xlsm")
+Main <- read_excel("C:/Users/omer.sharif/Desktop/Office Computer/Capstone/R Codes/Ethanol Dashboard/Jul 2021/Main.xlsm")
 ```
 
 
@@ -45,7 +45,7 @@ knitr::include_graphics('./img/logo.jpg')
 * Hover of the mouse on the data highlights _Prices,Dates,Products and Importer_ 
 * `Colours` here represent Products.
 * Data points kept transparent so that all data may show in cluster.
-*  _This report is under construction_
+
 
 ```{r,fig.width=25,fig.height=25}
 
